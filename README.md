@@ -6,8 +6,32 @@
 [![Platform](https://img.shields.io/cocoapods/p/WQAudioEdit.svg?style=flat)](https://cocoapods.org/pods/WQAudioEdit)
 
 ## Example
+本demo采用audioEngine进行开发
+包含剪切，复制，粘贴，并进行操作后的播放和保存
+以下方式创建编辑工具
+let fileUrl = Bundle.main.url(forResource: "simple-drum-beat1", withExtension: "mp3")
+self.editActionTool = WQAudioEditAction.createActionTool(fileUrl: fileUrl!)
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+以下方式创建播放器
+self.editPlay = WQAudioEditPlay.createPlayTool(editActionTool: self.editActionTool!)
+self.editPlay.delegate = self
+
+编辑调用中传入的frame参数均为以总流长度为基准的位置
+剪切
+self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
+
+粘贴
+self.editActionTool.pasteAction(locFrame: 100000)
+
+复制
+self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
+
+保存编辑后的音频
+let save = WQAudioSaveTool.init(play: self.editPlay.audioEngine, play: self.editPlay.playerNode, saveFileUrl: self.filePath(), actionTool: self.editActionTool)
+save.delegate = self
+save.beginSave()
+
+有兴趣您可以看先AVAudioEngineOfflineRender和EZAudio
 
 ## Requirements
 

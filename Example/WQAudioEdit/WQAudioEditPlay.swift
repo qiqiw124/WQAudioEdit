@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-
+typealias PlayCompliteBlock = ()->Void
 protocol WQAudioEditPlayDelegate:NSObjectProtocol {
     func playProgress(tool:WQAudioEditPlay, currentframe:Int64,totalFrame:Int64,currentRate:Double)
     func playFinish(tool:WQAudioEditPlay)
@@ -22,6 +22,7 @@ class WQAudioEditPlay: NSObject {
     var pitchNode   : AVAudioUnitTimePitch!
     var loc         : Int64! = 0
     var segLength   : Int64 = 1024
+    var playFinishBlock  : PlayCompliteBlock!
     
     weak var delegate : WQAudioEditPlayDelegate?
     var editActionTool:WQAudioEditAction!
@@ -67,7 +68,7 @@ class WQAudioEditPlay: NSObject {
         }
     }
     
-    private func scheduleSegment(fromFrame:Int64,length:Int64, com:@escaping AVAudioNodeCompletionHandler) {
+    private func scheduleSegment(fromFrame:Int64,length:Int64, com:@escaping PlayCompliteBlock) {
         if self.editActionTool.editModelArray.count == 0{
             com()
             return
@@ -91,52 +92,62 @@ class WQAudioEditPlay: NSObject {
             return
         }
         beginModel.seekFrame = realBeginFrame
-        self.realScheduleSegment(fromFrame: realBeginFrame, length: self.segLength, model: beginModel) {
-            com()
-        }
-        
-        
+        self.playFinishBlock = com
+        self.realScheduleSegment(fromFrame: realBeginFrame, length: self.segLength, model: beginModel)
+        let noti = NotificationCenter.default
+        noti.addObserver(self, selector: #selector(playNoti(noti:)), name: NSNotification.Name(rawValue: "PlayNotiForFrame"), object: nil)
     }
-    private func realScheduleSegment(fromFrame:Int64,length:Int64,model:WQAudioEditModel, com:@escaping AVAudioNodeCompletionHandler){
+    
+    private func realScheduleSegment(fromFrame:Int64,length:Int64,model:WQAudioEditModel){
         self.playerNode.scheduleSegment(model.audioFile, startingFrame:fromFrame, frameCount: AVAudioFrameCount(length), at: nil) {
-            if self.playerNode.isPlaying == false{
-                model.seekFrame = model.beginFrame
-                return
-            }
             self.loc = self.loc + length
             model.seekFrame = model.seekFrame + length
             
             self.playing(currentframe: self.loc, totalFrame: self.editActionTool.getTotalFrames())
-            
-            if(model.seekFrame >= model.endFrame){//结束
-                
-                com()
-            }else if (model.endFrame - model.seekFrame > self.segLength){
-                
-                print("\(String(describing: model.seekFrame)),\(String(describing: model.endFrame))")
-                self.realScheduleSegment(fromFrame: model.seekFrame, length: self.segLength, model: model) {
-                    
-                }
-                
-            }else if (model.endFrame - model.seekFrame <= self.segLength){//最后一片
-                
-                self.realScheduleSegment(fromFrame: model.seekFrame, length: model.endFrame - model.seekFrame, model: model) {
-                    model.seekFrame = model.beginFrame
-                    let index =  self.editActionTool.editModelArray.index(of: model)
-                    if index < self.editActionTool.editModelArray.count - 1{
-                        let nextModel = self.editActionTool.editModelArray.object(at: index + 1) as! WQAudioEditModel
-                        self.realScheduleSegment(fromFrame: model.seekFrame, length: self.segLength, model: nextModel) {
-                            com()
-                        }
-                    }else{
-                        
-                        com()
-                    }
-                }
-            }
+            let noti = NotificationCenter.default
+            noti.post(name: NSNotification.Name(rawValue: "PlayNotiForFrame"), object: model)
             
         }
     }
+    //播放完毕再填充下一部分
+    @objc private func playNoti(noti:Notification) {
+        let model = noti.object as! WQAudioEditModel
+        if self.playerNode.isPlaying == false{
+            model.seekFrame = model.beginFrame
+            NotificationCenter.default.removeObserver(self)
+            if self.playFinishBlock != nil{
+                self.playFinishBlock()
+            }
+            return
+        }
+        if(model.seekFrame >= model.endFrame){//结束
+            //最后一片结束，查询下一个
+            let index =  self.editActionTool.editModelArray.index(of: model)
+            if index < self.editActionTool.editModelArray.count - 1{
+                model.seekFrame = model.beginFrame
+                let nextModel = self.editActionTool.editModelArray.object(at: index + 1) as! WQAudioEditModel
+                self.realScheduleSegment(fromFrame: nextModel.seekFrame, length: self.segLength, model: nextModel)
+            }else{
+                print("nam")
+                model.seekFrame = model.beginFrame
+                NotificationCenter.default.removeObserver(self)
+                if self.playFinishBlock != nil{
+                    self.playFinishBlock()
+                }
+            }
+        }else if (model.seekFrame + self.segLength  < model.endFrame){
+            
+        
+            print("\(String(describing: model.seekFrame)),\(String(describing: model.endFrame))")
+            self.realScheduleSegment(fromFrame: model.seekFrame, length: self.segLength, model: model)
+            
+        }else if (model.seekFrame + self.segLength >= model.endFrame ){//最后一片
+
+            self.realScheduleSegment(fromFrame: model.seekFrame, length: model.endFrame - model.seekFrame, model: model)
+        }
+    }
+    
+    
     
     
     
@@ -185,13 +196,15 @@ class WQAudioEditPlay: NSObject {
     
     func play(fromFrame:Int64) {
         self.seekFromFrame(fromFrame: fromFrame)
-        self.play()
+        self.playStatus = .playing
+        self.playerNode.play()
         
     }
     func stop() {
         if self.playStatus == .stop || self.playStatus == .none{
             return
         }
+        NotificationCenter.default.removeObserver(self)
         self.playerNode.stop()
         self.playStatus = .stop
         
@@ -208,7 +221,9 @@ class WQAudioEditPlay: NSObject {
     func setRate(rate:Float) {
         self.pitchNode.rate = rate
     }
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     
 }

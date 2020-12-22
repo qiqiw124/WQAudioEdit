@@ -22,7 +22,7 @@ class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolD
         self.editPlay = WQAudioEditPlay.createPlayTool(editActionTool: self.editActionTool!)
         self.editPlay.delegate = self
         
-        self.editActionTool.cutAction(firstFrame: 0, endFrame: 10161900/2)
+        self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
         self.editActionTool.pasteAction(locFrame: 100000)
         
         self.playSlider.maximumValue = Float(self.editActionTool.getTotalFrames())
@@ -57,7 +57,7 @@ class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolD
         self.playSlider.setValue(Float(currentframe), animated: true)
     }
     func playFinish(tool: WQAudioEditPlay) {
-        
+      print("播放完毕")
     }
     
     //WQAudioSaveToolDelegate

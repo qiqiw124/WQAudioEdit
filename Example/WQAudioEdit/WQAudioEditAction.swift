@@ -148,7 +148,7 @@ class WQAudioEditAction: NSObject {
             if realLoc + modelLength > firstFrame{//firstFrame在此model中
                 let index = self.editModelArray.index(of: model)
                 if realLoc + modelLength >= endFrame{//endFrame也在model中
-                    if realLoc == aeModel.beginFrame{//起点相同，直接剪切
+                    if realLoc == firstFrame{//起点相同，直接剪切
                         if realLoc + modelLength != endFrame{
                             let newModel2 = WQAudioEditModel.model(bgFrame: endFrame - realLoc, edFrame: aeModel.endFrame, editAction: .none,fileUrl: aeModel.fileUrl)
                             self.editModelArray.replaceObject(at: index, with: newModel2)
@@ -223,6 +223,12 @@ class WQAudioEditAction: NSObject {
         return Double(self.getTotalFrames()) / self.getSampleRate()
     }
     
-    
+    @objc func getFormate() -> AVAudioFormat {
+        if self.editModelArray.count > 0{
+            let model = self.editModelArray.firstObject as! WQAudioEditModel
+            return model.audioFile.fileFormat
+        }
+        return AVAudioFormat.init(standardFormatWithSampleRate: self.getSampleRate(), channels: 2)!
+    }
     
 }
