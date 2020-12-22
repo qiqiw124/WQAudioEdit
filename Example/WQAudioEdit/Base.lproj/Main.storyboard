@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +18,52 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="j1Z-bU-iEV">
+                                <rect key="frame" x="35" y="318.5" width="305" height="31"/>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9v-kD-bI3">
+                                <rect key="frame" x="37" y="391" width="31" height="30"/>
+                                <state key="normal" title="播放"/>
+                                <connections>
+                                    <action selector="playBtnClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5Af-uv-W5N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ty-P7-Udf">
+                                <rect key="frame" x="307" y="391" width="31" height="30"/>
+                                <state key="normal" title="停止"/>
+                                <connections>
+                                    <action selector="stopPlayBtnClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="e48-o5-vMW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnx-K5-1Lz">
+                                <rect key="frame" x="172" y="455" width="31" height="30"/>
+                                <state key="normal" title="保存"/>
+                                <connections>
+                                    <action selector="saveFileBtnClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="m23-4k-CBf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0ty-P7-Udf" firstAttribute="top" secondItem="j1Z-bU-iEV" secondAttribute="bottom" constant="42.5" id="22X-VC-vLn"/>
+                            <constraint firstItem="j1Z-bU-iEV" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="3ni-f7-B2Q"/>
+                            <constraint firstItem="tnx-K5-1Lz" firstAttribute="top" secondItem="0ty-P7-Udf" secondAttribute="bottom" constant="34" id="987-7k-XAo"/>
+                            <constraint firstItem="w9v-kD-bI3" firstAttribute="top" secondItem="j1Z-bU-iEV" secondAttribute="bottom" constant="42.5" id="NPb-T4-SjW"/>
+                            <constraint firstItem="tnx-K5-1Lz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="RZh-A6-kb6"/>
+                            <constraint firstItem="j1Z-bU-iEV" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="UNa-cI-yIo"/>
+                            <constraint firstItem="w9v-kD-bI3" firstAttribute="leading" secondItem="j1Z-bU-iEV" secondAttribute="leading" id="k9p-jL-qAy"/>
+                            <constraint firstItem="j1Z-bU-iEV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="37" id="t8m-I4-J27"/>
+                            <constraint firstItem="0ty-P7-Udf" firstAttribute="trailing" secondItem="j1Z-bU-iEV" secondAttribute="trailing" id="vDU-bf-uym"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playSlider" destination="j1Z-bU-iEV" id="hwJ-P5-rRq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="104.8" y="112.89355322338831"/>
         </scene>
     </scenes>
 </document>

@@ -22,7 +22,7 @@ pod 'WQAudioEdit'
 
 ## Author
 
-01810452, wangqiqi@smt.cn
+YUER, qiqiw124@163.com
 
 ## License
 

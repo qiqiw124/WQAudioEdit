@@ -1,0 +1,6 @@
+framework module WQAudioEdit {
+  umbrella header "WQAudioEdit-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		32C76E641C63010DE6181D61 /* Pods_WQAudioEdit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D1F6E9B6B0AC1930BE683A8 /* Pods_WQAudioEdit_Tests.framework */; };
+		3966D3F5259042C800FF5BB6 /* WQAudioEditPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3966D3F4259042C800FF5BB6 /* WQAudioEditPlay.swift */; };
+		3966D40325907D6A00FF5BB6 /* WQAudioSaveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3966D40225907D6A00FF5BB6 /* WQAudioSaveTool.m */; };
+		39CAC698258B538700459328 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39CAC697258B538700459328 /* AVFoundation.framework */; };
+		39CAC6C0258B601800459328 /* simple-drum-beat1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 39CAC6BF258B601800459328 /* simple-drum-beat1.mp3 */; };
+		39CAC6FD258C578F00459328 /* WQAudioEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAC6FC258C578F00459328 /* WQAudioEditModel.swift */; };
+		39CAC701258C8A4900459328 /* WQAudioEditEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAC700258C8A4900459328 /* WQAudioEditEnum.swift */; };
+		39CAC705258C8B0D00459328 /* WQAudioEditAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAC704258C8B0D00459328 /* WQAudioEditAction.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +37,15 @@
 /* Begin PBXFileReference section */
 		0BD8D0BE9F60E08882CB3853 /* Pods-WQAudioEdit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WQAudioEdit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-WQAudioEdit_Tests/Pods-WQAudioEdit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		19FA6A80C78B5BE8EF33C49E /* Pods_WQAudioEdit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WQAudioEdit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3966D3F4259042C800FF5BB6 /* WQAudioEditPlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQAudioEditPlay.swift; sourceTree = "<group>"; };
+		3966D40025907D6A00FF5BB6 /* WQAudioEdit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WQAudioEdit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		3966D40125907D6A00FF5BB6 /* WQAudioSaveTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WQAudioSaveTool.h; sourceTree = "<group>"; };
+		3966D40225907D6A00FF5BB6 /* WQAudioSaveTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WQAudioSaveTool.m; sourceTree = "<group>"; };
+		39CAC697258B538700459328 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		39CAC6BF258B601800459328 /* simple-drum-beat1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "simple-drum-beat1.mp3"; sourceTree = "<group>"; };
+		39CAC6FC258C578F00459328 /* WQAudioEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQAudioEditModel.swift; sourceTree = "<group>"; };
+		39CAC700258C8A4900459328 /* WQAudioEditEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQAudioEditEnum.swift; sourceTree = "<group>"; };
+		39CAC704258C8B0D00459328 /* WQAudioEditAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WQAudioEditAction.swift; sourceTree = "<group>"; };
 		46EC4A4EED2123E883B2896F /* Pods-WQAudioEdit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WQAudioEdit_Example.release.xcconfig"; path = "Target Support Files/Pods-WQAudioEdit_Example/Pods-WQAudioEdit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4D1F6E9B6B0AC1930BE683A8 /* Pods_WQAudioEdit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WQAudioEdit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* WQAudioEdit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WQAudioEdit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,10 +58,10 @@
 		607FACE51AFB9204008FA782 /* WQAudioEdit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WQAudioEdit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		783BC1E16CD032EDD401162F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		7DCA1FDCEBA0393CF78B172A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		783BC1E16CD032EDD401162F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7DCA1FDCEBA0393CF78B172A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		88C3BBA0521F7DB144D59CE7 /* Pods-WQAudioEdit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WQAudioEdit_Example.debug.xcconfig"; path = "Target Support Files/Pods-WQAudioEdit_Example/Pods-WQAudioEdit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8DBC1B01A5E109F40D5B8B0D /* WQAudioEdit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = WQAudioEdit.podspec; path = ../WQAudioEdit.podspec; sourceTree = "<group>"; };
+		8DBC1B01A5E109F40D5B8B0D /* WQAudioEdit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WQAudioEdit.podspec; path = ../WQAudioEdit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B8DD690D3CC3E100DBC50A4E /* Pods-WQAudioEdit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WQAudioEdit_Tests.release.xcconfig"; path = "Target Support Files/Pods-WQAudioEdit_Tests/Pods-WQAudioEdit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CAC698258B538700459328 /* AVFoundation.framework in Frameworks */,
 				ADB029E297DBA727A8788C3B /* Pods_WQAudioEdit_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,10 +112,18 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				3966D3F4259042C800FF5BB6 /* WQAudioEditPlay.swift */,
+				39CAC704258C8B0D00459328 /* WQAudioEditAction.swift */,
+				39CAC6FC258C578F00459328 /* WQAudioEditModel.swift */,
+				39CAC700258C8A4900459328 /* WQAudioEditEnum.swift */,
+				3966D40125907D6A00FF5BB6 /* WQAudioSaveTool.h */,
+				3966D40225907D6A00FF5BB6 /* WQAudioSaveTool.m */,
+				39CAC6BF258B601800459328 /* simple-drum-beat1.mp3 */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				3966D40025907D6A00FF5BB6 /* WQAudioEdit_Example-Bridging-Header.h */,
 			);
 			name = "Example for WQAudioEdit";
 			path = WQAudioEdit;
@@ -147,13 +172,13 @@
 				0BD8D0BE9F60E08882CB3853 /* Pods-WQAudioEdit_Tests.debug.xcconfig */,
 				B8DD690D3CC3E100DBC50A4E /* Pods-WQAudioEdit_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		C03EA3D82E6606897221F18C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39CAC697258B538700459328 /* AVFoundation.framework */,
 				19FA6A80C78B5BE8EF33C49E /* Pods_WQAudioEdit_Example.framework */,
 				4D1F6E9B6B0AC1930BE683A8 /* Pods_WQAudioEdit_Tests.framework */,
 			);
@@ -214,7 +239,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1220;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -228,6 +253,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -247,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39CAC6C0258B601800459328 /* simple-drum-beat1.mp3 in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -351,7 +378,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				39CAC701258C8A4900459328 /* WQAudioEditEnum.swift in Sources */,
+				3966D40325907D6A00FF5BB6 /* WQAudioSaveTool.m in Sources */,
+				39CAC6FD258C578F00459328 /* WQAudioEditModel.swift in Sources */,
+				39CAC705258C8B0D00459328 /* WQAudioEditAction.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				3966D3F5259042C800FF5BB6 /* WQAudioEditPlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,11 +529,15 @@
 			baseConfigurationReference = 88C3BBA0521F7DB144D59CE7 /* Pods-WQAudioEdit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WQAudioEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WQAudioEdit/WQAudioEdit_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -512,11 +548,14 @@
 			baseConfigurationReference = 46EC4A4EED2123E883B2896F /* Pods-WQAudioEdit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = WQAudioEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WQAudioEdit/WQAudioEdit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
