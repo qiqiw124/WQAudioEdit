@@ -23,9 +23,6 @@ class WQAudioEditModel: NSObject {
     var audioFile:AVAudioFile!
     
     var editAction:AudioEditActionEnum! = AudioEditActionEnum.none
-    //oc调用
-    var beginFrameStr:NSString! = ""
-    var endFrameStr:NSString!=""
     
     class func model(bgFrame:Int64,edFrame:Int64,editAction:AudioEditActionEnum,fileUrl:URL) -> WQAudioEditModel {
         let model : WQAudioEditModel = WQAudioEditModel.init()
@@ -34,8 +31,6 @@ class WQAudioEditModel: NSObject {
         model.seekFrame     = bgFrame
         model.editAction    = editAction
         model.fileUrl       = fileUrl
-        model.beginFrameStr = "\(bgFrame)" as NSString
-        model.endFrameStr   = "\(edFrame)" as NSString
         do {
             try model.audioFile     = AVAudioFile.init(forReading: fileUrl)
         } catch  {
