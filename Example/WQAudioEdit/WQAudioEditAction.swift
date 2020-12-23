@@ -28,7 +28,6 @@ class WQAudioEditAction: NSObject {
         self.editModelArray = NSMutableArray.init()
         let firstModel = WQAudioEditModel.model(bgFrame: 0, edFrame: 0, editAction: .none,fileUrl: self.defaultUrl)
         firstModel.endFrame = firstModel.audioFile.length
-        firstModel.endFrameStr = "\(firstModel.audioFile.length)" as NSString
         self.editModelArray.add(firstModel)
         
     }
