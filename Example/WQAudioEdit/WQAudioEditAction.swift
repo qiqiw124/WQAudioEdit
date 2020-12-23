@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 class WQAudioEditAction: NSObject {
     @objc var editModelArray:NSMutableArray!
     private var copyArray:NSMutableArray!
@@ -212,21 +212,21 @@ class WQAudioEditAction: NSObject {
         }
         return length
     }
-    func getSampleRate() -> Double {//默认以首个为准
+    @objc func getSampleRate() -> Double {//默认以首个为准
         if self.editModelArray.count > 0{
             let model = self.editModelArray.firstObject as! WQAudioEditModel
             return model.audioFile.fileFormat.sampleRate
         }
         return 44100
     }
-    func getDuration() -> Double {
+    @objc func getDuration() -> Double {
         return Double(self.getTotalFrames()) / self.getSampleRate()
     }
     
     @objc func getFormate() -> AVAudioFormat {
         if self.editModelArray.count > 0{
             let model = self.editModelArray.firstObject as! WQAudioEditModel
-            return model.audioFile.fileFormat
+            return model.audioFile.processingFormat
         }
         return AVAudioFormat.init(standardFormatWithSampleRate: self.getSampleRate(), channels: 2)!
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolDelegate{
+class ViewController: UIViewController ,WQAudioEditPlayDelegate{
     
     
 
@@ -17,7 +17,8 @@ class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolD
     var editPlay:WQAudioEditPlay!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let fileUrl = Bundle.main.url(forResource: "simple-drum-beat1", withExtension: "mp3")
+//        let fileUrl = Bundle.main.url(forResource: "simple-drum-beat1", withExtension: "mp3")
+        let fileUrl = Bundle.main.url(forResource: "test", withExtension: "caf")
         self.editActionTool = WQAudioEditAction.createActionTool(fileUrl: fileUrl!)
         self.editPlay = WQAudioEditPlay.createPlayTool(editActionTool: self.editActionTool!)
         self.editPlay.delegate = self
@@ -39,8 +40,7 @@ class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolD
         self.editPlay.stop()
     }
     @IBAction func saveFileBtnClick(_ sender: Any) {
-        let save = WQAudioSaveTool.init(play: self.editPlay.audioEngine, play: self.editPlay.playerNode, saveFileUrl: self.filePath(), actionTool: self.editActionTool)
-        save.delegate = self
+        let save = WQAudioSaveTool.createSaveTool(editPlay: self.editPlay, fileUrl: self.filePath(), actionTool: self.editActionTool)
         save.beginSave()
     }
     
@@ -72,7 +72,7 @@ class ViewController: UIViewController ,WQAudioEditPlayDelegate,WQAudioSaveToolD
     
     func filePath() -> String {
         let documentsFolders = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-        let fileName = "/test.caf"
+        let fileName = "/save.caf"
         let path = documentsFolders?.appending(fileName)
         return (path ?? "") as String
     }

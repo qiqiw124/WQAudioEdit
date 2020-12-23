@@ -27,8 +27,7 @@ self.editActionTool.pasteAction(locFrame: 100000)
 self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
 
 保存编辑后的音频
-let save = WQAudioSaveTool.init(play: self.editPlay.audioEngine, play: self.editPlay.playerNode, saveFileUrl: self.filePath(), actionTool: self.editActionTool)
-save.delegate = self
+let save = WQAudioSaveTool.createSaveTool(editPlay: self.editPlay, fileUrl: self.filePath(), actionTool: self.editActionTool)
 save.beginSave()
 
 有兴趣您可以看先AVAudioEngineOfflineRender和EZAudio
