@@ -42,16 +42,6 @@ save.beginSave()
 有兴趣您可以看下AVAudioEngineOfflineRender和EZAudio
 
 ## Requirements
-
-## Installation
-
-WQAudioEdit is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'WQAudioEdit'
-```
-
 ## Author
 
 YUER, qiqiw124@163.com
