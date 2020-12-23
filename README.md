@@ -21,6 +21,7 @@ self.editPlay = WQAudioEditPlay.createPlayTool(editActionTool: self.editActionTo
 self.editPlay.delegate = self
 ```
 编辑调用中传入的frame参数均为以总流长度为基准的位置
+
 剪切
 ```
 self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
@@ -31,7 +32,7 @@ self.editActionTool.pasteAction(locFrame: 100000)
 ```
 复制
 ```
-self.editActionTool.cutAction(firstFrame: 10161900/3, endFrame: 10161900/2)
+self.editActionTool.copyAction(firstFrame: 10161900/3, endFrame: 10161900/2)
 ```
 保存编辑后的音频
 ```
