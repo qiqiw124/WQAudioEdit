@@ -38,54 +38,48 @@ class WQAudioEditAction: NSObject {
         
         var realLoc:Int64 = 0
         
-        
-        if self.editModelArray.count == 0{
-            let aeModel:WQAudioEditModel = WQAudioEditModel.model(bgFrame: firstFrame, edFrame: endFrame, editAction: .copy,fileUrl: self.defaultUrl)
-            self.copyArray.add(aeModel)
-        }else{
-            for model in self.editModelArray {
-                let aeModel = model as! WQAudioEditModel
-                let modelLength = aeModel.endFrame - aeModel.beginFrame
-                
-                if realLoc + modelLength > firstFrame{//firstFrame在此model中
-                    if realLoc + modelLength >= endFrame{//endFrame也在model中
-                        let cpFirstFrame:Int64 = firstFrame - realLoc + aeModel.beginFrame
-                        let cpEndFrame:Int64 = cpFirstFrame + cpLength
-                        let cpModel = WQAudioEditModel.model(bgFrame: cpFirstFrame, edFrame: cpEndFrame, editAction: .copy,fileUrl: aeModel.fileUrl)
-                        self.copyArray.add(cpModel.reinitModel())
-                        break
-                    }else if(realLoc + modelLength < endFrame){//endframe在下一个model中
-                        let cpFirstFrame:Int64 = firstFrame - realLoc + aeModel.beginFrame
-                        //先添加firstFrame所在的model的部分
-                        self.copyArray.add(WQAudioEditModel.model(bgFrame: cpFirstFrame, edFrame: aeModel.endFrame, editAction: .copy,fileUrl: aeModel.fileUrl))
-                        //获取endframe
-                        let index = self.editModelArray.index(of: model)
-                        let lastArray = self.editModelArray.subarray(with: NSMakeRange(index + 1, self.editModelArray.count - index - 1))
-                        
-                        for lastModel in lastArray{
-                            let lastM = lastModel as! WQAudioEditModel
-                            let lastMLength = lastM.endFrame - lastM.beginFrame
-                            //找endFrame的所在model
-                            if realLoc + lastMLength > endFrame{
-                                self.copyArray.add(WQAudioEditModel.model(bgFrame: lastM.beginFrame, edFrame: endFrame - realLoc + lastM.beginFrame, editAction: .copy,fileUrl: aeModel.fileUrl))
-                                break;
-                            }else{
-                                realLoc = realLoc + lastMLength
-                                self.copyArray.add(lastM.reinitModel())
-                            }
-                            
-                            
+        for model in self.editModelArray {
+            let aeModel = model as! WQAudioEditModel
+            let modelLength = aeModel.endFrame - aeModel.beginFrame
+            
+            if realLoc + modelLength > firstFrame{//firstFrame在此model中
+                if realLoc + modelLength >= endFrame{//endFrame也在model中
+                    let cpFirstFrame:Int64 = firstFrame - realLoc + aeModel.beginFrame
+                    let cpEndFrame:Int64 = cpFirstFrame + cpLength
+                    let cpModel = WQAudioEditModel.model(bgFrame: cpFirstFrame, edFrame: cpEndFrame, editAction: .copy,fileUrl: aeModel.fileUrl)
+                    self.copyArray.add(cpModel.reinitModel())
+                    break
+                }else if(realLoc + modelLength < endFrame){//endframe在下一个model中
+                    let cpFirstFrame:Int64 = firstFrame - realLoc + aeModel.beginFrame
+                    //先添加firstFrame所在的model的部分
+                    self.copyArray.add(WQAudioEditModel.model(bgFrame: cpFirstFrame, edFrame: aeModel.endFrame, editAction: .copy,fileUrl: aeModel.fileUrl))
+                    //获取endframe
+                    let index = self.editModelArray.index(of: model)
+                    let lastArray = self.editModelArray.subarray(with: NSMakeRange(index + 1, self.editModelArray.count - index - 1))
+                    
+                    for lastModel in lastArray{
+                        let lastM = lastModel as! WQAudioEditModel
+                        let lastMLength = lastM.endFrame - lastM.beginFrame
+                        //找endFrame的所在model
+                        if realLoc + lastMLength > endFrame{
+                            self.copyArray.add(WQAudioEditModel.model(bgFrame: lastM.beginFrame, edFrame: endFrame - realLoc + lastM.beginFrame, editAction: .copy,fileUrl: aeModel.fileUrl))
+                            break;
+                        }else{
+                            realLoc = realLoc + lastMLength
+                            self.copyArray.add(lastM.reinitModel())
                         }
-                        break
+                        
                         
                     }
+                    break
                     
-                }else{
-                    realLoc = modelLength + realLoc
                 }
-
                 
+            }else{
+                realLoc = modelLength + realLoc
             }
+
+            
         }
         
     }
